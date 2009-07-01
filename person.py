@@ -128,7 +128,6 @@ class modifyHuckFields(object):
         schema['id'].widget.description = "Required. Example: abc123 (the part of your default Penn State email address before @psu.edu)"
         schema['image'].widget.description = "You can upload an image up to 200px wide by 250px high (make sure it's at a resolution of 72 px/inch)"
         schema['lastName'].widget.description = "Required"
-        schema['officePhone'].widget.description = "Example: 814-865-1234"
         schema['specialties'].widget.description = "Browse to choose one or more areas where you have expertise or research interests. Note: some areas have sub-areas you can select (e.g. cognitive neuroscience is a sub-area of neuroscience)."
         schema['websites'].widget.label = "Other websites about you"
         schema['websites'].widget.description = "You can specify one or more websites (one per line) that people can go to read more about you, for instance, your departmental web page and/or lab website. Example: http://www.example.com/"
@@ -136,6 +135,8 @@ class modifyHuckFields(object):
         schema['officeCity'].widget.visible={'edit':'invisible','view':'invisible'}
         schema['officeState'].widget.visible={'edit':'invisible','view':'invisible'}
         schema['officePostalCode'].widget.visible={'edit':'invisible','view':'invisible'}
+        schema['departments'].widget.visible={'edit':'invisible','view':'invisible'}
+        schema['committees'].widget.visible={'edit':'invisible','view':'invisible'}
 
 
         return schema
