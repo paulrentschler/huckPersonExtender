@@ -44,7 +44,7 @@ class additionalInfoExtender(object):
                 enforceVocabulary=True,
                 vocabulary=[
                     ("University Park", "University Park"),
-                    ("Hershey Medical Center", "Hershey Medical Center"),
+                    ("Hershey", "Hershey"),
                     ("Altoona", "Altoona"),
                     ("Mont Alto", "Mont Alto"),
                     ("Worthington Scranton", "Worthington Scranton")
