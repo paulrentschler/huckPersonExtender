@@ -1,0 +1,9 @@
+from Products.FacultyStaffDirectory.extenderInstallation import installExtenderGloballyIfLocallyIsNotSupported
+
+from Products.huckPersonExtender.person import additionalInfoExtender
+from Products.huckPersonExtender.person import bldgDirExtender
+from Products.huckPersonExtender.person import modifyHuckFields
+
+installExtenderGloballyIfLocallyIsNotSupported(additionalInfoExtender, 'huckPersonExtender.additionalInfoExtender')
+installExtenderGloballyIfLocallyIsNotSupported(bldgDirExtender, 'huckPersonExtender.bldgDirExtender')
+installExtenderGloballyIfLocallyIsNotSupported(modifyHuckFields, 'huckPersonExtender.modifyHuckFields')
