@@ -13,14 +13,12 @@ class _StringExtensionField(ExtensionField, StringField):
 
 
 # Add fields for a fax number and the campus the person is located at
-class additionalInfoExtender(object):
-    """Adapter that adds a fax number and campus field to Person.
-    
-    You could also change or delete existing fields (though you might violate assumptions made in other code). To do that, implement ISchemaModifier instead of ISchemaExtender.
-    """
+# Add fields for use in building the data file for the Building Directory computers
+class addHuckFields(object):
+    """Adapter that adds a building and room number field to Person."""
     adapts(IPerson)
     implements(ISchemaExtender)
-    
+
     _fields = [
             _StringExtensionField('fax',
                 required=False,
@@ -47,25 +45,10 @@ class additionalInfoExtender(object):
                     ("Hershey", "Hershey"),
                     ("Altoona", "Altoona"),
                     ("Mont Alto", "Mont Alto"),
-                    ("Worthington Scranton", "Worthington Scranton")
+                    ("Worthington Scranton", "Worthington Scranton"),
                 ]
-            )
-        ]
-    
-    def __init__(self, context):
-        self.context = context
-    
-    def getFields(self):
-        return self._fields
-
-
-# Add fields for use in building the data file for the Building Directory computers
-class bldgDirExtender(object):
-    """Adapter that adds a building and room number field to Person."""
-    adapts(IPerson)
-    implements(ISchemaExtender)
-
-    _fields = [
+            ),
+            
             _StringExtensionField('building',
                 required=False,
                 searchable=False,
@@ -91,7 +74,7 @@ class bldgDirExtender(object):
                     label=u"Room number",
                     description=u"Example: 401B. Only used for certain buildings that have computerized directories."
                 )
-            )
+            ),
         ]
 
 
@@ -126,11 +109,12 @@ class modifyHuckFields(object):
         schema['education'].widget.description = "One degree per line. Example: PhD (1995) Penn State: Subject area or thesis title"
         schema['firstName'].widget.description = "Required"
         schema['id'].widget.description = "Required. Example: abc123 (the part of your default Penn State email address before @psu.edu)"
-        schema['image'].widget.description = "You can upload an image up to 200px wide by 250px high (make sure it's at a resolution of 72 px/inch)"
+        schema['image'].widget.description = "You can upload an image up to 200px wide by 250px high"
         schema['lastName'].widget.description = "Required"
         schema['specialties'].widget.description = "Browse to choose one or more areas where you have expertise or research interests. Note: some areas have sub-areas you can select (e.g. cognitive neuroscience is a sub-area of neuroscience)."
         schema['websites'].widget.label = "Other websites about you"
         schema['websites'].widget.description = "You can specify one or more websites (one per line) that people can go to read more about you, for instance, your departmental web page and/or lab website. Example: http://www.example.com/"
+        schema['officeAddress'].widget.label = "Office Address (room and building)"
 
         schema['officeCity'].widget.visible={'edit':'invisible','view':'invisible'}
         schema['officeState'].widget.visible={'edit':'invisible','view':'invisible'}

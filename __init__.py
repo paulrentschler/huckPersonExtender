@@ -3,12 +3,10 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.FacultyStaffDirectory.extenderInstallation import installExtenderGloballyIfLocallyIsNotSupported
 from Products.GenericSetup import EXTENSION, profile_registry
 
-from Products.huckPersonExtender.person import additionalInfoExtender
-from Products.huckPersonExtender.person import bldgDirExtender
+from Products.huckPersonExtender.person import addHuckFields
 from Products.huckPersonExtender.person import modifyHuckFields
 
-installExtenderGloballyIfLocallyIsNotSupported(additionalInfoExtender, 'huckPersonExtender.additionalInfoExtender')
-installExtenderGloballyIfLocallyIsNotSupported(bldgDirExtender, 'huckPersonExtender.bldgDirExtender')
+installExtenderGloballyIfLocallyIsNotSupported(addHuckFields, 'huckPersonExtender.bldgDirExtender')
 installExtenderGloballyIfLocallyIsNotSupported(modifyHuckFields, 'huckPersonExtender.modifyHuckFields')
 
 registerDirectory('skins', globals())
