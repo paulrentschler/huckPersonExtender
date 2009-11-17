@@ -1,12 +1,17 @@
-FSDPersonExtender: customize the person object for the Huck Institutes
+huckPersonExtender: customize the person object for the Huck Institutes
 
 Versions
 
-  Developed and tested on Plone 2.5.5. Unknown on all other versions.
+  Developed for Plone 3.3.1 and copied from the MobilePhoneExtender example
+  provided with FacultyStaffDirectory so it should work fine in Plone 2.5 
+  but will extend all Plone sites. Works even better in Plone 3, where it 
+  can be installed or uninstalled on individual Plone sites independently.
 
 Dependencies
 
-  * "FacultyStaffDirectory": http://plone.org/products/faculty-staff-directory/ 2.0
+  * "FacultyStaffDirectory":http://plone.org/products/faculty-staff-directory/ 2.x
+  
+  * archetypes.schemaextender 1.x
 
 Description
   
@@ -24,9 +29,6 @@ Description
 
      Other changes:
 
-
-
-
 Installing the Example Extender
 
   1. Install FacultyStaffDirectory according to that product's README.txt.
@@ -39,10 +41,18 @@ Installing the Example Extender
      &rarr; Add/Remove Products, and install FacultyStaffDirectoryExtender.
      In Plone 2.5, it will be installed simply by virtue of being in the
      Products folder.
+
+Using the Example Extender
     
+  1. In your Faculty/Staff Directory object, add a Person.
+  
+  2. Click the Person's Edit tab.
+
 Version History
   
-      1.0 -- Initial release
+      2.0 -- Revised version for Plone 3.x
+      
+      1.0 -- Initial release for Plone 2.5
 
 Authorship
 
