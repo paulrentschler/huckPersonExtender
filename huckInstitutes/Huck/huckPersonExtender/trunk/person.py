@@ -290,10 +290,11 @@ class modifyHuckFields(object):
                 fieldName.widget.condition="python:member.has_role('Manager')"
 
         for fieldName in schema.getSchemataFields('Administrative'):
-            fieldName.widget.condition="python:member.has_role('Manager')"                 
+            fieldName.widget.condition="python:member.checkPermission('FacultyStaffDirectory: Assign Specialties to People', here)"                 
 
 
-
+        # convenient commands for figuring out what fields are in which
+        #  schemata and in what order the fields are REALLY in
         #for x in schema.fields(): print x
         #print schema.getSchemataNames()
         #import pdb; pdb.set_trace()
