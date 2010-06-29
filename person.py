@@ -87,16 +87,6 @@ class addHuckFields(object):
                     description=u"Example: 401B. Only used for certain buildings that have computerized directories."
                 )
             ),
-            
-            _BooleanExtensionField('former',
-                required=False,
-                searchable=False,
-                schemata="Administrative",
-                widget=BooleanWidget(
-                    label=u"No longer associated with Huck",
-                    description=u"Check this box if the person is no longer associated with the Huck Institutes. DO NOT delete any information about the user, their information will be hidden from the public."
-                )
-            ),            
         ]
 
 
@@ -241,12 +231,6 @@ class modifyHuckFields(object):
         tmp_field = schema['room'].copy()
         tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
         schema['room'] = tmp_field
-
-        #tmp_field = schema['former'].copy()
-        #tmp_field.widget.label = ""
-        #tmp_field.widget.description = ""
-        #tmp_field.schemata = "Administrative"
-        #schema['former'] = tmp_field
 
         #tmp_field = schema['advisor'].copy()
         #tmp_field.widget.label = ""
