@@ -141,17 +141,17 @@ class modifyHuckFields(object):
         schema['officeAddress'] = tmp_field
 
         tmp_field = schema['officeCity'].copy()
-        tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
+        #tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
         tmp_field.schemata = "General"
         schema['officeCity'] = tmp_field
 
         tmp_field = schema['officeState'].copy()
-        tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
+        #tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
         tmp_field.schemata = "General"
         schema['officeState'] = tmp_field
 
         tmp_field = schema['officePostalCode'].copy()
-        tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
+        #tmp_field.widget.visible={'edit':'invisible','view':'invisible'}
         tmp_field.schemata = "General"
         schema['officePostalCode'] = tmp_field
 
@@ -241,6 +241,16 @@ class modifyHuckFields(object):
         tmp_field = schema['subject'].copy()
         tmp_field.schemata = "Administrative"
         schema['subject'] = tmp_field
+        
+        tmp_field = schema['effectiveDate'].copy()
+        tmp_field.schemata = "Administrative"
+        tmp_field.widget.description = "If this date is in the future, the person will not show up in listings and searches until this date. If this date is in the past, it can be used to control the order of the person's appearance in listings."
+        schema['effectiveDate'] = tmp_field
+        
+        tmp_field = schema['expirationDate'].copy()
+        tmp_field.schemata = "Administrative"
+        tmp_field.widget.description = "When this date is reached, the person will be marked as having left the Huck Institutes."
+        schema['expirationDate'] = tmp_field
         
         # move some typically hidden fields to the right schemata
         for fieldName in ['title', 'password', 'confirmPassword']:
