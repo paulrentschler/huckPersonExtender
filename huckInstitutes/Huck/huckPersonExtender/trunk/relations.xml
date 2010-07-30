@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<RelationsLibrary>
+	<RulesetCollection id="HuckPersonExtender">
+		<Ruleset id="people_advisors" title="people_advisors" uid="people_advisors">
+			<TypeConstraint id="type_constraint" title="type_constraint">
+				<allowedSourceType>
+					FSDPerson
+				</allowedSourceType>
+				<allowedTargetType>
+					FSDPerson
+				</allowedTargetType>
+			</TypeConstraint>
+			<InverseImplicator id="inverse_relation" title="inverse_relation">
+				<inverseRuleset uidref="advisors_people"/>
+			</InverseImplicator>
+		</Ruleset>
+		<Ruleset id="advisors_people" title="advisors_people" uid="advisors_people">
+			<TypeConstraint id="type_constraint" title="type_constraint">
+				<allowedSourceType>
+				    FSDPerson
+				</allowedSourceType>
+				<allowedTargetType>
+				    FSDPerson
+				</allowedTargetType>
+			</TypeConstraint>
+			<InverseImplicator id="inverse_relation" title="inverse_relation">
+				<inverseRuleset uidref="people_advisors"/>
+			</InverseImplicator>
+		</Ruleset>
+	</RulesetCollection>
+</RelationsLibrary>
+
+
+

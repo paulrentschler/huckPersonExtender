@@ -3,6 +3,10 @@ from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifie
 from Products.Archetypes.atapi import *
 from zope.interface import implements, Interface
 from zope.component import adapts, provideAdapter
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+from Products.Relations.field import RelationField
+from Products.CMFCore.permissions import View, ModifyPortalContent
+from AccessControl import ClassSecurityInfo
 
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 
@@ -11,6 +15,8 @@ from Products.FacultyStaffDirectory.interfaces.person import IPerson
 class _StringExtensionField(ExtensionField, StringField):
     pass
 class _BooleanExtensionField(ExtensionField, BooleanField):
+    pass
+class _RelationExtensionField(ExtensionField, RelationField):
     pass
 
 
@@ -87,6 +93,25 @@ class addHuckFields(object):
                     description=u"Example: 401B. Only used for certain buildings that have computerized directories."
                 )
             ),
+            
+            _RelationExtensionField('advisors',
+                required=False,
+                searchable=False,
+                schemata="Administrative",
+                validators=(),
+                widget=ReferenceBrowserWidget(
+                    label=u'Advisors',
+                    base_query="_search_people_in_this_fsd",
+                        allow_browse=0,
+                    allow_search=1,
+                    show_results_without_query=1,
+                    startup_directory_method="_get_parent_fsd_path",
+                    ),
+                allowed_types=('FSDPerson'),
+                multiValued=True,
+                relationship='people_advisors'
+            ),
+            
         ]
 
 
@@ -101,6 +126,8 @@ class addHuckFields(object):
 class modifyHuckFields(object):
     adapts(IPerson)
     implements(ISchemaModifier)
+    
+    security = ClassSecurityInfo()
 
     def __init__(self, context):
         self.context = context
@@ -251,7 +278,7 @@ class modifyHuckFields(object):
         tmp_field.schemata = "Administrative"
         tmp_field.widget.description = "When this date is reached, the person will be marked as having left the Huck Institutes."
         schema['expirationDate'] = tmp_field
-        
+
         # move some typically hidden fields to the right schemata
         for fieldName in ['title', 'password', 'confirmPassword']:
             tmp_field = schema[fieldName].copy()
@@ -273,7 +300,8 @@ class modifyHuckFields(object):
         schema.moveField('jobTitles', after='classifications')
         schema.moveField('specialties', after='jobTitles')
         schema.moveField('committees', after='specialties')
-        schema.moveField('subject', after='committees')
+        schema.moveField('advisors', after='committees')
+        schema.moveField('subject', after='advisors')
         schema.moveField('building', after='subject')
         schema.moveField('room', after='building')
         
@@ -294,4 +322,3 @@ class modifyHuckFields(object):
         #import pdb; pdb.set_trace()
 
         return schema
-
