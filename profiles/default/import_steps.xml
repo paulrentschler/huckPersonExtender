@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step
+        id="huckPersonExtender.setupRelations"
+        version=""
+        title="huckPersonExtender: add Relations configuration"
+        description=""
+        handler="Products.huckPersonExtender.setuphandlers.setupRelations" />
+        
+</import-steps>
