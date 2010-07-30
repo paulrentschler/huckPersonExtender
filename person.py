@@ -102,11 +102,13 @@ class addHuckFields(object):
                 widget=ReferenceBrowserWidget(
                     label=u'Advisors',
                     base_query="_search_people_in_this_fsd",
-                        allow_browse=0,
+                    allow_browse=0,
                     allow_search=1,
                     show_results_without_query=1,
                     startup_directory_method="_get_parent_fsd_path",
-                    ),
+                    restrict_browsing_to_startup_directory=True,
+                ),
+                write_permission="Modify portal content",
                 allowed_types=('FSDPerson'),
                 multiValued=True,
                 relationship='people_advisors'
@@ -278,6 +280,10 @@ class modifyHuckFields(object):
         tmp_field.schemata = "Administrative"
         tmp_field.widget.description = "When this date is reached, the person will be marked as having left the Huck Institutes."
         schema['expirationDate'] = tmp_field
+        
+        tmp_field = schema['terminationDetails'].copy()
+        tmp_field.schemata = "Administrative"
+        schema['terminationDetails'] = tmp_field
 
         # move some typically hidden fields to the right schemata
         for fieldName in ['title', 'password', 'confirmPassword']:
