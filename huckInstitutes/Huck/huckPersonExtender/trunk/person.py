@@ -123,7 +123,7 @@ class addHuckFields(object):
                 validators=('isTidyHtmlWithCleanup',),
                 default_output_type='text/x-html-safe',
                 allowable_content_types=ALLOWABLE_CONTENT_TYPES,
-                user_property='description'
+                user_property='description',
                 widget=RichWidget(
                     label=_(u"FacultyStaffDirectory_label_termination_details", default=u"Termination details"),
                     description=_(u"FacultyStaffDirectory_description_termination_details", default=u"Message displayed to site visitors when the person's termination date has passed. Can be used to provide forwarding information or a link to someone who has taken over their responsibilities."),
