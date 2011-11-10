@@ -122,7 +122,7 @@ class addHuckFields(object):
                 schemata="Administrative",
                 validators=('isTidyHtmlWithCleanup',),
                 default_output_type='text/x-html-safe',
-                allowable_content_types=ALLOWABLE_CONTENT_TYPES,
+                allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword', 'text/x-rst'),
                 user_property='description',
                 widget=RichWidget(
                     label=_(u"FacultyStaffDirectory_label_termination_details", default=u"Termination details"),
