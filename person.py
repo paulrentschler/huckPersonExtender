@@ -125,8 +125,8 @@ class addHuckFields(object):
                 allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword', 'text/x-rst'),
                 user_property='description',
                 widget=RichWidget(
-                    label=_(u"FacultyStaffDirectory_label_termination_details", default=u"Termination details"),
-                    description=_(u"FacultyStaffDirectory_description_termination_details", default=u"Message displayed to site visitors when the person's termination date has passed. Can be used to provide forwarding information or a link to someone who has taken over their responsibilities."),
+                    label=u"Termination details",
+                    description=u"Message displayed to site visitors when the person's termination date has passed. Can be used to provide forwarding information or a link to someone who has taken over their responsibilities.",
                     i18n_domain='FacultyStaffDirectory',
                 ),
             ),
