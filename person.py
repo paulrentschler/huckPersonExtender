@@ -14,8 +14,6 @@ from Products.FacultyStaffDirectory.interfaces.person import IPerson
 # Any field you tack on must have ExtensionField as its first subclass:
 class _StringExtensionField(ExtensionField, StringField):
     pass
-class _TextExtensionField(ExtensionField, TextField):
-    pass
 class _BooleanExtensionField(ExtensionField, BooleanField):
     pass
 class _RelationExtensionField(ExtensionField, RelationField):
@@ -114,21 +112,6 @@ class addHuckFields(object):
                 allowed_types=('FSDPerson'),
                 multiValued=True,
                 relationship='people_advisors'
-            ),
-            
-            _TextExtensionField('terminationDetails',
-                required=False,
-                searchable=False,
-                schemata="Administrative",
-                validators=('isTidyHtmlWithCleanup',),
-                default_output_type='text/x-html-safe',
-                allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword', 'text/x-rst'),
-                user_property='description',
-                widget=RichWidget(
-                    label=u"Termination details",
-                    description=u"Message displayed to site visitors when the person's termination date has passed. Can be used to provide forwarding information or a link to someone who has taken over their responsibilities.",
-                    i18n_domain='FacultyStaffDirectory',
-                ),
             ),
             
         ]
@@ -298,6 +281,10 @@ class modifyHuckFields(object):
         tmp_field.widget.description = "When this date is reached, the person will be marked as having left the Huck Institutes."
         schema['expirationDate'] = tmp_field
         
+        tmp_field = schema['terminationDetails'].copy()
+        tmp_field.schemata = "Administrative"
+        schema['terminationDetails'] = tmp_field
+
         # move some typically hidden fields to the right schemata
         for fieldName in ['title', 'password', 'confirmPassword']:
             tmp_field = schema[fieldName].copy()
