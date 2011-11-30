@@ -225,7 +225,8 @@ class modifyHuckFields(object):
 
         tmp_field = schema['id'].copy()
         tmp_field.widget.description = "Example: abc123 (the part of your default Penn State email address before @psu.edu)."
-        tmp_field.schemata = "Administrative"
+        tmp_field.widget.condition="python:member.checkPermission('FacultyStaffDirectory: Assign Specialties to People', here)"
+        tmp_field.schemata = "General"
         schema['id'] = tmp_field
 
         tmp_field = schema['classifications'].copy()
