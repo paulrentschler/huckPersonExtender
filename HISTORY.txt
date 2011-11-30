@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.1 (Unreleased)
+----------------
+* Removed the termination details field as it's in FSD 3.x
+* Moved the id field to the top of the General schemata
+* Put a condition on the id field so that only personnel managers
+  and managers can edit it
+
+
 2.0 (30 November 2011)
 ----------------
 * Eggified the product
