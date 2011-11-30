@@ -118,21 +118,6 @@ class addHuckFields(object):
                 relationship='people_advisors'
             ),
             
-            _TextExtensionField('terminationDetails',
-                required=False,
-                searchable=False,
-                schemata="Administrative",
-                validators=('isTidyHtmlWithCleanup',),
-                default_output_type='text/x-html-safe',
-                allowable_content_types=('text/plain', 'text/structured', 'text/html', 'application/msword', 'text/x-rst'),
-                user_property='description',
-                widget=RichWidget(
-                    label=u"Termination details",
-                    description=u"Message displayed to site visitors when the person's termination date has passed. Can be used to provide forwarding information or a link to someone who has taken over their responsibilities.",
-                    i18n_domain='FacultyStaffDirectory',
-                ),
-            ),
-            
         ]
 
 
