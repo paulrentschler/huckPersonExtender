@@ -3,12 +3,15 @@ from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifie
 from Products.Archetypes.atapi import *
 from zope.interface import implements, Interface
 from zope.component import adapts, provideAdapter
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
-from Products.Relations.field import RelationField
+
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from AccessControl import ClassSecurityInfo
 
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
+from Products.Relations.field import RelationField
+
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
+from Products.huckPersonExtender import PersonExtenderMessageFactory
 
 
 # Any field you tack on must have ExtensionField as its first subclass:
@@ -22,10 +25,9 @@ class _RelationExtensionField(ExtensionField, RelationField):
     pass
 
 
-# Add fields for a fax number and the campus the person is located at
-# Add fields for use in building the data file for the Building Directory computers
 class addHuckFields(object):
-    """Adapter that adds a new fields to Person."""
+    """Adapter that adds new fields to Person.
+       """
     adapts(IPerson)
     implements(ISchemaExtender)
 
@@ -141,8 +143,10 @@ class addHuckFields(object):
         return self._fields
 
 
-# Change the wording and order of a few fields; hide fields that will not be used
 class modifyHuckFields(object):
+    """Change the wording and order of a few fields; hide fields that will 
+       not be used
+       """
     adapts(IPerson)
     implements(ISchemaModifier)
     
@@ -154,7 +158,9 @@ class modifyHuckFields(object):
     from Products.FacultyStaffDirectory.Person import schema
 
     def fiddle(object, schema):
-
+        """Move fields into a General or Administrative schemata and 
+           hide the fields we will not be using at all
+           """
         tmp_field = schema['firstName'].copy()
         tmp_field.schemata = "General"
         schema['firstName'] = tmp_field
@@ -305,6 +311,7 @@ class modifyHuckFields(object):
             schema[fieldName] = tmp_field
         
         
+        # reorder how the fields are displayed in the General schemata
         schema.moveField('nickName', after='suffix')
         schema.moveField('campus', before='officeAddress')
         schema.moveField('fax', after='officePhone')
@@ -314,6 +321,7 @@ class modifyHuckFields(object):
         schema.moveField('password', after='assistants')
         schema.moveField('confirmPassword', after='password')
         
+        # reorder how the fields are displayed in the Administrative schemata
         schema.moveField('id', after='confirmPassword')
         schema.moveField('classifications', after='id')
         schema.moveField('jobTitles', after='classifications')
@@ -326,7 +334,12 @@ class modifyHuckFields(object):
         
         
         # set permission conditions on some of the schemata
-        for schemataName in ['User Settings', 'categorization', 'dates', 'ownership', 'settings']:
+        for schemataName in ['User Settings', 
+                             'categorization', 
+                             'dates', 
+                             'ownership', 
+                             'settings',
+                             ]:
             for fieldName in schema.getSchemataFields(schemataName):
                 fieldName.widget.condition="python:member.has_role('Manager')"
 
