@@ -298,6 +298,7 @@ class modifyHuckFields(object):
         
         
         # reorder how the fields are displayed in the General schemata
+        schema.moveField('id', before='firstName')
         schema.moveField('nickName', after='suffix')
         schema.moveField('campus', before='officeAddress')
         schema.moveField('fax', after='officePhone')
@@ -308,7 +309,6 @@ class modifyHuckFields(object):
         schema.moveField('confirmPassword', after='password')
         
         # reorder how the fields are displayed in the Administrative schemata
-        schema.moveField('id', after='confirmPassword')
         schema.moveField('classifications', after='id')
         schema.moveField('jobTitles', after='classifications')
         schema.moveField('specialties', after='jobTitles')
