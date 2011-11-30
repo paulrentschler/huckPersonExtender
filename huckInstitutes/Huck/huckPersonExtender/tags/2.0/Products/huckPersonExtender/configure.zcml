@@ -1,0 +1,20 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="Products.huckPersonExtender">
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="Huck Person Extender"
+        directory="profiles/default"
+        description="Adds additional fields and rearranges existing ones for Huck Institutes use."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+        
+    <include package="archetypes.schemaextender" />
+    <adapter factory=".person.addHuckFields"
+             provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
+    <adapter factory=".person.modifyHuckFields"
+             provides="archetypes.schemaextender.interfaces.ISchemaModifier" />
+    
+</configure>

@@ -1,0 +1,19 @@
+Changelog
+=========
+
+2.0 (30 November 2011)
+----------------
+* Eggified the product
+* Converted the extender to work with Plone 4 and FSD 3.0+
+
+
+1.0.1 (15 November 2011)
+----------------
+* Final version of the old-style person extender
+
+
+1.0 (Unknown)
+----------------
+* Initial release of the product that customizes
+  the Faculty Staff Directory Person object.
+
