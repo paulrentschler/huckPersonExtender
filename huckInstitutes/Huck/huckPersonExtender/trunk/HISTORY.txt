@@ -4,7 +4,7 @@ Changelog
 2.0 (30 November 2011)
 ----------------
 * Eggified the product
-* Converted the extender to work with Plone 4 and FSD 3.1b1
+* Converted the extender to work with Plone 4 and FSD 3.0+
 
 
 1.0.1 (15 November 2011)
