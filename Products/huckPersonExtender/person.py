@@ -1,5 +1,5 @@
 from archetypes.schemaextender.field import ExtensionField
-from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier
+from archetypes.schemaextender.interfaces import ISchemaExtender, ISchemaModifier, IBrowserLayerAwareExtender
 from Products.Archetypes.atapi import *
 from zope.interface import implements, Interface
 from zope.component import adapts, provideAdapter
@@ -12,6 +12,7 @@ from Products.Relations.field import RelationField
 
 from Products.FacultyStaffDirectory.interfaces.person import IPerson
 from Products.huckPersonExtender import PersonExtenderMessageFactory
+from Products.huckPersonExtender.interfaces import IHuckPersonExtender
 
 
 # Any field you tack on must have ExtensionField as its first subclass:
@@ -29,7 +30,9 @@ class addHuckFields(object):
     """Adapter that adds new fields to Person.
        """
     adapts(IPerson)
-    implements(ISchemaExtender)
+    implements(ISchemaExtender, IBrowserLayerAwareExtender)
+
+    layer = IHuckPersonExtender
 
     _fields = [
             _StringExtensionField('nickName',
@@ -133,7 +136,9 @@ class modifyHuckFields(object):
        not be used
        """
     adapts(IPerson)
-    implements(ISchemaModifier)
+    implements(ISchemaModifier, IBrowserLayerAwareExtender)
+
+    layer = IHuckPersonExtender
     
     security = ClassSecurityInfo()
 

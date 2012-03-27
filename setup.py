@@ -27,6 +27,7 @@ setup(name='Products.huckPersonExtender',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.FacultyStaffDirectory>=3.0',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

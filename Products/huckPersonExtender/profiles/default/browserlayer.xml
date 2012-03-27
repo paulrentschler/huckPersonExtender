@@ -1,0 +1,5 @@
+<layers>
+    <layer name="Products.huckPersonExtender"
+           interface="Products.huckPersonExtender.interfaces.IHuckPersonExtender" />
+</layers>
+
