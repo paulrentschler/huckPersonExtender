@@ -295,6 +295,10 @@ class modifyHuckFields(object):
         tmp_field.widget.description = "When this date is reached, the person will be marked as having left the Huck Institutes."
         schema['expirationDate'] = tmp_field
         
+        tmp_field = schema['terminationDetails'].copy()
+        tmp_field.schemata = "Administrative"
+        schema['terminationDetails'] = tmp_field
+        
         # move some typically hidden fields to the right schemata
         for fieldName in ['title', 'password', 'confirmPassword']:
             tmp_field = schema[fieldName].copy()
